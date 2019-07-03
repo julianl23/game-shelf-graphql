@@ -1,0 +1,30 @@
+type Collection {
+  id: String
+  owner: String
+  items: [GameCollectionItem]
+  createdAt: String
+  updatedAt: String
+}
+
+type GameCollectionItem {
+  id: String
+  game: Game
+  platform: Platform
+  note: CollectionItemNote
+  borrowed: Boolean
+  borrowedDate: String
+  cost: Float
+  details: CollectionItemDetails
+}
+
+type CollectionItemNote {
+  text: String
+  isPrivate: Boolean
+}
+
+type CollectionItemDetails {
+  hasCartDiskItem: Boolean
+  hasCaseBox: Boolean
+  hasManual: Boolean
+  hasOtherInserts: Boolean
+}

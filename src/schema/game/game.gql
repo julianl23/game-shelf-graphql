@@ -1,0 +1,68 @@
+type Game {
+  id: String
+  title: String
+  developer: [Company]
+  publisher: [Company]
+  platforms: [Platform]
+  releaseDate: String
+  description: String
+  createdAt: String
+  updatedAt: String
+  igdbId: Int
+  cover: Cover
+  gameModes: [GameMode]
+  multiplayerModes: [MultiplayerMode]
+  inCollection: Boolean
+}
+
+input GameInput {
+  id: String
+  platform: String
+  note: NoteInput
+  borrowed: Boolean
+  borrowedDate: String
+  cost: Float
+  details: DetailsInput
+}
+
+input NoteInput {
+  text: String
+  isPrivate: Boolean
+}
+
+input DetailsInput {
+  hasCartDiskItem: Boolean
+  hasCaseBox: Boolean
+  hasManual: Boolean
+  hasOtherInserts: Boolean
+}
+
+type Cover {
+  url: String
+  width: Int
+  height: Int
+  game_id: Int
+  igdb_id: Int
+  igdb_image_id: Int
+}
+
+type MultiplayerMode {
+  platform: Platform
+  offlinecoop: Boolean
+  onlinecoop: Boolean
+  lancoop: Boolean
+  campaigncoop: Boolean
+  splitscreenonline: Boolean
+  splitscreen: Boolean
+  dropin: Boolean
+  offlinecoopmax: Int
+  onlinecoopmax: Int
+  onlinemax: Int
+  offlinemax: Int
+}
+
+type GameMode {
+  id: String
+  igdbId: String
+  name: String
+}

@@ -63,6 +63,7 @@
 // };
 
 import GameCollectionApi from '../../connectors/GameCollectionApi';
+import gameSerializer from './game.serializer';
 
 export default {
   Query: {
@@ -73,12 +74,9 @@ export default {
       const { id } = args;
       const game = await GameCollectionApi.getGame(id);
 
-      console.log(game);
-
       // TODO: ERROR HANDLE HERE
 
-      // return {};
-      return game.data;
+      return gameSerializer(game.data);
     }
   },
   Mutation: {

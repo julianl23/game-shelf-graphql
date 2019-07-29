@@ -1,8 +1,8 @@
 type Game {
   id: String
   title: String
-  developer: [Company]
-  publisher: [Company]
+  developers: [Company]
+  publishers: [Company]
   platforms: [Platform]
   releaseDate: String
   description: String

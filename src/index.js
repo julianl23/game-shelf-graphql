@@ -7,7 +7,10 @@ import { typeDefs, resolvers } from './schema';
 const host = process.env.SERVER_HOST;
 const port = process.env.SERVER_PORT;
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers
+});
 
 // This `listen` method launches a web-server.  Existing apps
 // can utilize middleware options, which we'll discuss later.

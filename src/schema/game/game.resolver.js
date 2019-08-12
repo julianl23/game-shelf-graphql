@@ -67,16 +67,55 @@ import gameSerializer from './game.serializer';
 
 export default {
   Query: {
-    async games() {
-      return {};
+    async games(root, args) {
+      const { query, page } = args;
+
+      const response = await GameCollectionApi.searchGames({ query, page });
+      console.log(response.data);
+
+      // const contextUser = context.user;
+      // let results = await Game.search({ q: query, size, from });
+
+      // if user is logged in
+      //   the server should tell me if the game is in the isCollection
+      //   we can do that in the game search endpoint
+
+      // if (contextUser) {
+      //   let currentUser = await User.findOne({
+      //     id: mongoose.Types.ObjectId(contextUser.id)
+      //   })
+      //     .populate('gameCollection')
+      //     .populate('items');
+
+      //   const collection = currentUser.gameCollection.items;
+      //   const collectionIds = collection.map(item => {
+      //     return item.game.id.toString();
+      //   });
+
+      //   results.forEach(resultItem => {
+      //     resultItem.inCollection = collectionIds.includes(resultItem.id);
+      //   });
+      // }
+
+      // return results;
+
+      const { current_page, total_pages, total_count, results } = response.data;
+      const serializedGames = results.map(game => gameSerializer(game));
+
+      return {
+        currentPage: current_page,
+        totalPages: total_pages,
+        totalCount: total_count,
+        games: serializedGames
+      };
     },
     async game(root, args) {
       const { id } = args;
-      const game = await GameCollectionApi.getGame(id);
+      const response = await GameCollectionApi.getGame(id);
 
       // TODO: ERROR HANDLE HERE
 
-      return gameSerializer(game.data);
+      return gameSerializer(response.data);
     }
   },
   Mutation: {

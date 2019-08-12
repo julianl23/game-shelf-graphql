@@ -1,5 +1,5 @@
 type Company {
-  id: String
+  id: Int
   name: String
   igdbId: Int
   description: String

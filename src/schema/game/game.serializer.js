@@ -9,6 +9,7 @@ const gameSerializer = game => {
     game_modes,
     game_developers,
     game_publishers,
+    igdb_id,
     ...rest
   } = game;
 
@@ -26,6 +27,7 @@ const gameSerializer = game => {
     gameModes: game_modes,
     developers: transformedGameDevelopers,
     publishers: transformedGamePublishers,
+    igdbId: igdb_id,
     ...rest
   };
 };

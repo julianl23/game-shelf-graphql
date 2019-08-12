@@ -8,7 +8,14 @@ const GameCollectionApi = {
     return result;
   },
 
-  searchGames() {}
+  async searchGames({ query, page }) {
+    let queryString = `q['title_cont']=${query}`;
+    if (page) {
+      queryString += `&page=${page}`;
+    }
+    const result = await axios.get(`${API_URL}/games?${queryString}`);
+    return result;
+  }
 };
 
 export default GameCollectionApi;

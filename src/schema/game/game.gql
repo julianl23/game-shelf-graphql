@@ -1,5 +1,5 @@
 type Game {
-  id: String
+  id: Int
   title: String
   developers: [Company]
   publishers: [Company]
@@ -16,7 +16,7 @@ type Game {
 }
 
 input GameInput {
-  id: String
+  id: Int
   platform: String
   note: NoteInput
   borrowed: Boolean
@@ -62,7 +62,14 @@ type MultiplayerMode {
 }
 
 type GameMode {
-  id: String
-  igdbId: String
+  id: Int
+  igdbid: Int
   name: String
+}
+
+type GameResults {
+  currentPage: Int
+  totalPages: Int
+  totalCount: Int
+  games: [Game]
 }

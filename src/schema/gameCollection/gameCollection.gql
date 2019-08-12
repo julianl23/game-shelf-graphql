@@ -1,5 +1,5 @@
 type Collection {
-  id: String
+  id: Int
   owner: String
   items: [GameCollectionItem]
   createdAt: String
@@ -7,7 +7,7 @@ type Collection {
 }
 
 type GameCollectionItem {
-  id: String
+  id: Int
   game: Game
   platform: Platform
   note: CollectionItemNote

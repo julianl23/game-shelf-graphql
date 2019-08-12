@@ -1,5 +1,5 @@
 type Platform {
-  id: Id
+  id: Int
   name: String!
   igdbId: Int
   logo: PlatformLogo

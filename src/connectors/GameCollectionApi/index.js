@@ -9,7 +9,7 @@ const GameCollectionApi = {
   },
 
   async searchGames({ query, page }) {
-    let queryString = `q['title_cont']=${query}`;
+    let queryString = `q[title_cont]=${query}`;
     if (page) {
       queryString += `&page=${page}`;
     }

@@ -15,6 +15,20 @@ const GameCollectionApi = {
     }
     const result = await axios.get(`${API_URL}/games?${queryString}`);
     return result;
+  },
+
+  async getUser(id) {
+    const result = await axios.get(`${API_URL}/users/${id}`);
+    return result;
+  },
+
+  async getCurrentUser(token) {
+    const result = await axios.get(`${API_URL}/user`, {
+      headers: {
+        Authorization: token
+      }
+    });
+    return result;
   }
 };
 

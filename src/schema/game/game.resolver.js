@@ -71,7 +71,6 @@ export default {
       const { query, page } = args;
 
       const response = await GameCollectionApi.searchGames({ query, page });
-      console.log(response.data);
 
       // const contextUser = context.user;
       // let results = await Game.search({ q: query, size, from });

@@ -58,13 +58,24 @@
 //   }
 // };
 
+import GameCollectionApi from '../../connectors/GameCollectionApi';
+import userSerializer from './user.serializer';
+
 export default {
   Query: {
-    user() {
-      return {};
+    async user(root, args) {
+      if (!args.id) {
+        return null;
+      }
+
+      const { id } = args;
+      const result = await GameCollectionApi.getUser(id);
+      return userSerializer(result.data);
     },
-    currentUser() {
-      return {};
+    async currentUser(root, args, context) {
+      const { token } = context;
+      const result = await GameCollectionApi.getCurrentUser(token);
+      return userSerializer(result.data);
     }
   }
 };

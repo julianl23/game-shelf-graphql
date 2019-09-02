@@ -9,7 +9,11 @@ const port = process.env.SERVER_PORT;
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
+  context: ({ req }) => {
+    const token = req.headers.authorization || '';
+    return { token };
+  }
 });
 
 // This `listen` method launches a web-server.  Existing apps

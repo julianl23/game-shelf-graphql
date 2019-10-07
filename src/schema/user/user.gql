@@ -7,7 +7,7 @@ type User {
   createdAt: String
   updatedAt: String
   token: String
-  gameCollection: Collection
+  collection: Collection
 }
 
 input NewUserInput {

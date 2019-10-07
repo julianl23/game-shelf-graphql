@@ -2,8 +2,6 @@ type Collection {
   id: Int
   owner: String
   items: [GameCollectionItem]
-  createdAt: String
-  updatedAt: String
 }
 
 type GameCollectionItem {

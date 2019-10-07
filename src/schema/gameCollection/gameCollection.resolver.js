@@ -1,28 +1,33 @@
-// lol i dunno what is this
+import GameCollectionApi from '../../connectors/GameCollectionApi';
 
-// import mongoose from 'mongoose';
-// import GameCollection from '../../app/game_collection/model';
+export default {
+  User: {
+    async collection(root, args, context) {
+      const collectionId = args.id || null;
+      const { token } = context;
 
-// export default {
-//   Query: {
-//     async user(root, args) {
-//       const { id } = args;
-//       return await User.findOne({ id: mongoose.Types.ObjectId(id) }).populate(
-//         'gameCollection'
-//       );
-//     },
-//     async currentUser(root, args, context) {
-//       const contextUser = context.user;
+      // Eventually I need to be able to do things like filter by platform
+      // i want to have something like an array of { platform_id: count }
+      // Like:
+      // [{ '50': 1001 }, { '2': 25 }];
+      // Maybe that's what the count property should be
 
-//       if (contextUser) {
-//         const currentUser = await User.findOne({
-//           id: mongoose.Types.ObjectId(contextUser.id)
-//         }).populate('gameCollection');r
+      try {
+        const result = await GameCollectionApi.getGameCollection(
+          collectionId,
+          token
+        );
 
-//         return currentUser;
-//       } else {
-//         return null;
-//       }
-//     }
-//   }
-// };
+        const collection = result.data;
+
+        return {
+          id: collection.id,
+          owner: collection.user_id,
+          items: collection.items
+        };
+      } catch (e) {
+        return e;
+      }
+    }
+  }
+};

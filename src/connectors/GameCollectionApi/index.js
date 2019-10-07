@@ -29,6 +29,33 @@ const GameCollectionApi = {
       }
     });
     return result;
+  },
+
+  async getGameCollection(collectionId, token) {
+    const result = await axios.get(
+      `${API_URL}/game_collections/${collectionId ? collectionId : ''}`,
+      {
+        responseType: 'json',
+        headers: {
+          accept: '*/*',
+          'content-type': 'application/json',
+          Authorization: token
+        }
+      }
+    );
+    return result;
+  },
+
+  async getGameCollectionItems(collectionId, token) {
+    const result = await axios.get(
+      `${API_URL}/game_collections/${collectionId}/items`,
+      {
+        headers: {
+          Authorization: token
+        }
+      }
+    );
+    return result;
   }
 };
 

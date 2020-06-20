@@ -1,3 +1,4 @@
 type Mutation {
   AddGameToCollection(input: GameInput!): Game
+  Login(email: String!, password: String!): User
 }

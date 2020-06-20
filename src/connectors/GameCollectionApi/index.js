@@ -25,8 +25,8 @@ const GameCollectionApi = {
   async getCurrentUser(token) {
     const result = await axios.get(`${API_URL}/user`, {
       headers: {
-        Authorization: token
-      }
+        Authorization: token,
+      },
     });
     return result;
   },
@@ -39,8 +39,8 @@ const GameCollectionApi = {
         headers: {
           accept: '*/*',
           'content-type': 'application/json',
-          Authorization: token
-        }
+          Authorization: token,
+        },
       }
     );
     return result;
@@ -51,12 +51,28 @@ const GameCollectionApi = {
       `${API_URL}/game_collections/${collectionId}/items`,
       {
         headers: {
-          Authorization: token
-        }
+          Authorization: token,
+        },
       }
     );
     return result;
-  }
+  },
+
+  async login({ email, password }) {
+    let result;
+    try {
+      result = await axios.post(`${API_URL}/users/sign_in`, {
+        user: {
+          email,
+          password,
+        },
+      });
+    } catch (e) {
+      result = e;
+    }
+
+    return result;
+  },
 };
 
 export default GameCollectionApi;
